@@ -16,7 +16,7 @@ namespace ServerBackend
             string region = "eu";
 
             //Create an instance of the API authentication class. Token from this is used for subsequent API calls.
-            BlizzardAPI blizzardAPI = new BlizzardAPI(clientID, clientSecret, region);
+            BlizzardAPIAuthentication blizzardAPIAuthentication = new BlizzardAPIAuthentication(clientID, clientSecret, region);
 
             /*//DEBUG
             Console.WriteLine(blizzardAPI.accessToken);

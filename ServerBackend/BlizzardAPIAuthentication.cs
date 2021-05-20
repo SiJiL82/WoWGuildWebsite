@@ -4,7 +4,7 @@ using RestSharp;
 
 namespace ServerBackend
 {
-    public class BlizzardAPI
+    public class BlizzardAPIAuthentication
     {
         #region Properties
         //Authentication token for subsequent API calls.
@@ -16,7 +16,7 @@ namespace ServerBackend
 
         #region Constructors
         //Default constructor, set the region and get our token
-        public BlizzardAPI(string clientId, string clientSecret, string region)
+        public BlizzardAPIAuthentication(string clientId, string clientSecret, string region)
         {
             this.region = region;
             accessToken = GetAccessToken(clientId, clientSecret);
