@@ -5630,6 +5630,7 @@
     "net5.0": [
       "Microsoft.EntityFrameworkCore.Design >= 5.0.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.6",
+      "Microsoft.Extensions.Configuration.Json >= 5.0.0",
       "Microsoft.Extensions.Configuration.UserSecrets >= 5.0.0",
       "Newtonsoft.Json >= 13.0.1",
       "RestSharp >= 106.11.7"
@@ -5691,6 +5692,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[5.0.6, )"
+          },
+          "Microsoft.Extensions.Configuration.Json": {
+            "target": "Package",
+            "version": "[5.0.0, )"
           },
           "Microsoft.Extensions.Configuration.UserSecrets": {
             "target": "Package",
