@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Configuration;
 
 namespace ServerBackend
 {
@@ -6,9 +7,14 @@ namespace ServerBackend
     {
         static void Main(string[] args)
         {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddUserSecrets<Program>()
+                .Build();
+
             //Authentication values.
             //TODO: Store these securely somewhere
-            string clientID = new string("c4f17728b56d49308c5013f2127d69c3");
+            //string clientID = new string("c4f17728b56d49308c5013f2127d69c3");
             string clientSecret = "qbLMp60fhNZqU86jpWHt1f43vN2kidfe";
             
             //Endpoint region.
