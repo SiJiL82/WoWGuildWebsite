@@ -8,12 +8,11 @@ namespace ServerBackend
     {
         static void Main(string[] args)
         {
+            //Create config to load usersecrets.
+            //TODO: This should be devmode only, production would need to store these securely.
             var configuration = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
                 .Build();
-
-            
-
             //Authentication values.
             string clientID = configuration["BlizzardAPIClientID"];
             string clientSecret = configuration["BlizzardAPIClientSecret"];
