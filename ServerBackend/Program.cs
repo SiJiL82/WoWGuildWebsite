@@ -12,6 +12,7 @@ namespace ServerBackend
             //TODO: This should be devmode only, production would need to store these securely.
             var configuration = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
+                .AddJsonFile("appsettings.json")
                 .Build();
             //Authentication values.
             string clientID = configuration["BlizzardAPIClientID"];
