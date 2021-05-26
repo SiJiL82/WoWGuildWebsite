@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[5.0.6, )"
             },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
             "Microsoft.Extensions.Configuration.UserSecrets": {
               "target": "Package",
               "version": "[5.0.0, )"
