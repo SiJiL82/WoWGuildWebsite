@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yAqfQi2Mvt15lrRK41b6a5zJKyZZ7TqPEKZ3XW8/SHHa3PHGwGdkSKJt1k6MAlsUi7a2ar6X1sdxtj3TLkxn2A==",
+  "dgSpecHash": "bcHVtdC3VLBmiPe4OzLfrSbVE6K3UY4rArQUFgE0Acn7tl5ecxELy7tigzmzbqbuO0O1/SfDoveotggYrVmL4w==",
   "success": true,
   "projectFilePath": "C:\\Repos\\WoWGuildWebsite\\WoWGuildWebsite\\ServerBackend\\ServerBackend.csproj",
   "expectedPackageFiles": [
@@ -18,6 +18,7 @@
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.configuration.binder\\5.0.0\\microsoft.extensions.configuration.binder.5.0.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\5.0.0\\microsoft.extensions.configuration.fileextensions.5.0.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.configuration.json\\5.0.0\\microsoft.extensions.configuration.json.5.0.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\microsoft.extensions.configuration.usersecrets\\5.0.0\\microsoft.extensions.configuration.usersecrets.5.0.0.nupkg.sha512",
