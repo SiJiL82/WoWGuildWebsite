@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ServerBackend
 {
@@ -12,8 +13,9 @@ namespace ServerBackend
             //TODO: This should be devmode only, production would need to store these securely.
             var configuration = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", true, true)
                 .Build();
+
             //Authentication values.
             string clientID = configuration["BlizzardAPIClientID"];
             string clientSecret = configuration["BlizzardAPIClientSecret"];
@@ -25,8 +27,9 @@ namespace ServerBackend
             //Create an instance of the API authentication class. Token from this is used for subsequent API calls.
             BlizzardAPIAuthentication blizzardAPIAuthentication = new BlizzardAPIAuthentication(clientID, clientSecret, region);
 
-            //DEBUG
+            /*//DEBUG
             Console.WriteLine(blizzardAPIAuthentication.accessToken);
+            Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
         }
     }
