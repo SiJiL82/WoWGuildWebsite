@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using RestSharp;
@@ -25,7 +26,7 @@ namespace ServerBackend
             string uri = "https://"+region+".api.blizzard.com/data/wow/playable-class/index?namespace=static-"+region+"&locale=en_US&access_token=" +token;
             apiResponse = MakeAPIRequest(uri);
 
-            /*//DEBUG
+            //DEBUG
             Console.WriteLine(apiResponse.Content);
             //*/
             dynamic apiResponseJson = JsonConvert.DeserializeObject(apiResponse.Content);

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+
 
 namespace ServerBackend
 {
@@ -31,6 +30,8 @@ namespace ServerBackend
             Console.WriteLine(blizzardAPIAuthentication.accessToken);
             Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
+
+            BlizzardAPIPlayableClass apiPlayableClass = new BlizzardAPIPlayableClass(region, blizzardAPIAuthentication.accessToken);
         }
     }
 }
