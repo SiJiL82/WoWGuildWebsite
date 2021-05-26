@@ -59,13 +59,13 @@ namespace ServerBackend
         //Write API data to database
         private void WriteToDatabase(List<PlayableClass> classes)
         {
-            using(var db = new WoWGuildContext())
+            using(WoWGuildContext database = new WoWGuildContext())
             {
                 foreach(PlayableClass newClass in classes)
                 {
-                    db.Add(new PlayableClass {Name = newClass.Name, Id = newClass.Id});
+                    database.Add(newClass);
                 }
-                db.SaveChanges();
+                database.SaveChanges();
             }
         }
     }
