@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
-namespace ServerBackend.Models
+namespace ServerBackend
 {
     public partial class WoWGuildContext : DbContext
     {

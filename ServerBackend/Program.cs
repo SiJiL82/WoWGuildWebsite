@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-using ServerBackend.Models;
 
 namespace ServerBackend
 {
@@ -36,6 +35,15 @@ namespace ServerBackend
             apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
             apiPlayableClass.WriteNewAPIDataToDatabase();
             #endregion
+
+            #region "PlayableRaces"
+
+            #endregion
         }
     }
 }
+
+
+/*
+dotnet ef dbcontext scaffold <connectionstring> Microsoft.EntityFrameworkCore.SqlServer --table api.PlayableRace --output-dir Models --namespace ServerBackend --context-namespace ServerBackend
+*/
