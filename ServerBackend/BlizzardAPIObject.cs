@@ -2,7 +2,7 @@ using RestSharp;
 
 namespace ServerBackend
 {
-    public class BlizzardAPIRequest
+    public class BlizzardAPIObject
     {
         
         //Class to make requests to the Blizzard API.
@@ -19,5 +19,7 @@ namespace ServerBackend
 
             return response;
         }
+
+
     }
 }
