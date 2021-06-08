@@ -7,16 +7,14 @@ using ServerBackend.Models;
 
 namespace ServerBackend
 {
-    public class BlizzardAPIPlayableClass : BlizzardAPIObject
+    public class BlizzardAPIPlayableClass : BlizzardAPIObject<PlayableClass>
     {
-        //https://us.api.blizzard.com/data/wow/playable-class/7?namespace=static-us&locale=en_US&access_token=US28YW3liozF9sCTWUauEgdax5OktBzVtJ
-
+        //TODO: Look at abstract properties, how can these be made private?
         //Stores response from the API request
-        public List<PlayableClass> apiData {get; set;}
-        public List<PlayableClass> databaseData {get; set;}
-
+        public override List<PlayableClass> apiData {get; set;}
+        //Stores data retrieved from the database
+        public override List<PlayableClass> databaseData {get; set;}
         //URI for the request
-        //TODO: Look at abstract properties, how can this be made private?
         public override string uri {get; set;}
 
 
@@ -24,6 +22,7 @@ namespace ServerBackend
         public BlizzardAPIPlayableClass (string region, string token)
         {
             //Set the uri for this class
+            //https://us.api.blizzard.com/data/wow/playable-class/7?namespace=static-us&locale=en_US&access_token=US28YW3liozF9sCTWUauEgdax5OktBzVtJ
             uri = "https://"+region+".api.blizzard.com/data/wow/playable-class/index?namespace=static-"+region+"&locale=en_US&access_token=" +token;
             //Get API data from web service
             apiData = GetDataFromAPI<PlayableClass>(region, token);

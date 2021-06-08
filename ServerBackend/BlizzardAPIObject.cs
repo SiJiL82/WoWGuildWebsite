@@ -6,10 +6,13 @@ using ServerBackend.Models;
 
 namespace ServerBackend
 {
-    public abstract class BlizzardAPIObject
+    public abstract class BlizzardAPIObject<T> where T : class
     {
+        //Class to make requests to the Blizzard API and save the data
+        public abstract List<T> apiData {get; set;} 
+        public abstract List<T> databaseData {get; set;}
         public abstract string uri {get; set;}
-        //Class to make requests to the Blizzard API.
+        
         
         //Method to get the API data from the end point
         //This can be generic for all API items, just build up the endpoint URI first
