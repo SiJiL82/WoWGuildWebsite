@@ -8,17 +8,24 @@ namespace ServerBackend
 {
     public class BlizzardAPIObject<T> where T : class
     {
-        public List<T> apiData {get; set;} 
-        public List<T> databaseData {get; set;}
+        /*
+        Class to pull data from the Blizzard API, and from our database.
+        Compares the 2 sets of data and saves new API entries to the database 
+        */
+        //Stores data from the API  request
+        private List<T> apiData {get; set;} 
+        //Stores existing databaseData
+        //TODO: Do we need to keep this? It should probably get pulled in and thrown away rather than holding onto a potentially large dataset
+        private List<T> databaseData {get; set;}
+        //API request URI
         public string uri {get; set;}
 
 
-        //Method to get the API data from the end point
-        //This can be generic for all API items, just build up the endpoint URI first
+        //Get the API data from the end point
         private IRestResponse MakeAPIRequest(string uri)
         {
-            var client = new RestClient(uri);
-            var request = new RestRequest(Method.GET);
+            RestClient client = new RestClient(uri);
+            RestRequest request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
             IRestResponse response = client.Execute(request);
@@ -56,11 +63,17 @@ namespace ServerBackend
         //Compare database and API data, return data only in API (new data)
         public void WriteNewAPIDataToDatabase()
         {
-            
+            //Get the latest API data
             apiData = GetDataFromAPI();
+            //Get current database data
             databaseData = GetDataFromDatabase();
+            //Compare existing database data against API data
             List<T> newAPIData = GetAPIDataNotInDatabase();
-            WriteToDatabase(newAPIData);
+            //Write any new API data to the database
+            if(newAPIData.Count > 0)
+            {
+                WriteToDatabase(newAPIData);
+            }
         }
 
         //Write API data to database
@@ -68,18 +81,23 @@ namespace ServerBackend
         {
             using(WoWGuildContext database = new WoWGuildContext())
             {
+                //Loop through each object in the list and write it to the database.
                 foreach(T blizzardAPIObject in blizzardAPIObjects)
                 {
                     database.Add(blizzardAPIObject);
                 }
+                //Commit data
                 database.SaveChanges();
             }
         }
 
+        //Return a list of rows that are in API data but not in the database
         private List<T> GetAPIDataNotInDatabase()
         {
             return apiData.Except(databaseData).ToList();
         }
+
+        //TODO: Delete rows from the database that are no longer in the API.
 
         
     }
