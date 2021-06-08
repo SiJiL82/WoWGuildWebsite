@@ -57,6 +57,7 @@ namespace ServerBackend
         }
 
         //Write API data to database
+        //TODO: Move this to the base class. Need to make the type generic first.
         private void WriteToDatabase(List<PlayableClass> classes)
         {
             using(WoWGuildContext database = new WoWGuildContext())
@@ -67,6 +68,13 @@ namespace ServerBackend
                 }
                 database.SaveChanges();
             }
+        }
+
+        //Compare database and API data, return data only in API (new data)
+        //TODO: Move this to the base class. Need to make the type generic first. Potentially can use the class fields rather than pass as parameters.
+        private List<PlayableClass> GetNewPlayableClassesFromAPI(List<PlayableClass> apiList, List<PlayableClass> dbList)
+        {
+            return apiList.Except(dbList).ToList();
         }
     }
 }
