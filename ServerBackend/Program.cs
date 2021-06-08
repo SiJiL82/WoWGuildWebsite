@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-
+using ServerBackend.Models;
 
 namespace ServerBackend
 {
@@ -30,9 +30,11 @@ namespace ServerBackend
             Console.WriteLine(blizzardAPIAuthentication.accessToken);
             Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
-
-            BlizzardAPIPlayableClass apiPlayableClass = new BlizzardAPIPlayableClass(region, blizzardAPIAuthentication.accessToken);
+            
+            BlizzardAPIObject<PlayableClass> apiPlayableClass = new BlizzardAPIObject<PlayableClass>();
+            apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
             apiPlayableClass.WriteNewAPIDataToDatabase();
+
         }
     }
 }
