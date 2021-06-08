@@ -21,7 +21,6 @@ namespace ServerBackend
         {
             apiData = GetDataFromAPI(region, token);
             databaseData = GetDataFromDatabase();
-            WriteToDatabase(apiData);
         }
 
         //Pull latest data from the API
@@ -75,6 +74,13 @@ namespace ServerBackend
         private List<PlayableClass> GetNewPlayableClassesFromAPI(List<PlayableClass> apiList, List<PlayableClass> dbList)
         {
             return apiList.Except(dbList).ToList();
+        }
+
+        //Get data that's in the API but not in the DB and write it.
+        public void WriteNewAPIDataToDatabase()
+        {
+            List<PlayableClass> newAPIData = GetNewPlayableClassesFromAPI(apiData, databaseData);
+            WriteToDatabase(apiData);
         }
     }
 }

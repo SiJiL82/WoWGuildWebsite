@@ -32,6 +32,7 @@ namespace ServerBackend
             //*/
 
             BlizzardAPIPlayableClass apiPlayableClass = new BlizzardAPIPlayableClass(region, blizzardAPIAuthentication.accessToken);
+            apiPlayableClass.WriteNewAPIDataToDatabase();
         }
     }
 }
