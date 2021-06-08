@@ -37,7 +37,9 @@ namespace ServerBackend
             #endregion
 
             #region "PlayableRaces"
-
+            BlizzardAPIObject<PlayableRace> apiPlayableRace = new BlizzardAPIObject<PlayableRace>();
+            apiPlayableRace.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-race/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
+            apiPlayableRace.WriteNewAPIDataToDatabase();
             #endregion
         }
     }
