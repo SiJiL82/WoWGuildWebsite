@@ -80,7 +80,7 @@ namespace ServerBackend
         public void WriteNewAPIDataToDatabase()
         {
             List<PlayableClass> newAPIData = GetNewPlayableClassesFromAPI(apiData, databaseData);
-            WriteToDatabase(apiData);
+            WriteToDatabase(newAPIData);
         }
     }
 }
