@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bcHVtdC3VLBmiPe4OzLfrSbVE6K3UY4rArQUFgE0Acn7tl5ecxELy7tigzmzbqbuO0O1/SfDoveotggYrVmL4w==",
+  "dgSpecHash": "hKOgrdpiJ7H89SHPreQyvj0SN4FViJfLqPR0iFU3owmMmsnqbr78dR+rf7IqWVuc5fgQdU0Zy/o5mMn1yUQ/3Q==",
   "success": true,
   "projectFilePath": "C:\\Repos\\WoWGuildWebsite\\WoWGuildWebsite\\ServerBackend\\ServerBackend.csproj",
   "expectedPackageFiles": [
@@ -104,7 +104,8 @@
     "C:\\Users\\Sven\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Sven\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Sven\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\Sven\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Sven\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.5\\microsoft.netcore.app.host.win-x64.5.0.5.nupkg.sha512"
   ],
   "logs": []
 }
