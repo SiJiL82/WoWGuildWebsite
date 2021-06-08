@@ -41,5 +41,18 @@ namespace ServerBackend
                 database.SaveChanges();
             }
         }
+
+        //Pull latest data from the database
+        public virtual List<T> GetDataFromDatabase<T>() where T : class
+        {
+            List<T> results = null;
+
+            using(WoWGuildContext database = new WoWGuildContext())
+            {
+                results = database.Set<T>().ToList();
+            }
+            
+            return results;
+        }
     }
 }

@@ -19,8 +19,11 @@ namespace ServerBackend
         //Constructor, pass in region and authentication token
         public BlizzardAPIPlayableClass (string region, string token)
         {
+            //Get API data from web service
             apiData = GetDataFromAPI(region, token);
-            databaseData = GetDataFromDatabase();
+            //Get existing database data.
+            //Need to specify the type of this class
+            databaseData = GetDataFromDatabase<PlayableClass>();
         }
 
         //Pull latest data from the API
@@ -37,7 +40,8 @@ namespace ServerBackend
             dynamic apiResponseJson = JsonConvert.DeserializeObject(apiResponse.Content);
             return apiResponseJson.classes.ToObject<List<PlayableClass>>();
         }
-
+         
+        /*
         //Pull latest data from the database
         private List<PlayableClass> GetDataFromDatabase()
         {
@@ -48,12 +52,13 @@ namespace ServerBackend
                 results = database.PlayableClasses.ToList();
             }
 
-            /*//DEBUG
+            //DEBUG
             Console.WriteLine(results);
-            //*/
+            //
 
             return results;
         }
+        */
 
         //Get data that's in the API but not in the DB and write it.
         public void WriteNewAPIDataToDatabase()
