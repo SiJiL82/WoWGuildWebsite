@@ -5,7 +5,7 @@ using ServerBackend.Models;
 
 namespace ServerBackend
 {
-    public class BlizzardAPIObject
+    public abstract class BlizzardAPIObject
     {
         
         //Class to make requests to the Blizzard API.
@@ -51,8 +51,10 @@ namespace ServerBackend
             {
                 results = database.Set<T>().ToList();
             }
-            
+
             return results;
         }
+
+       
     }
 }
