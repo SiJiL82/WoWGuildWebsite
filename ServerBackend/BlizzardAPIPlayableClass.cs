@@ -7,7 +7,7 @@ using ServerBackend.Models;
 
 namespace ServerBackend
 {
-    public class BlizzardAPIPlayableClass : BlizzardAPIRequest
+    public class BlizzardAPIPlayableClass : BlizzardAPIObject
     {
         //https://us.api.blizzard.com/data/wow/playable-class/7?namespace=static-us&locale=en_US&access_token=US28YW3liozF9sCTWUauEgdax5OktBzVtJ
 
