@@ -26,24 +26,10 @@ namespace ServerBackend
             //Set the uri for this class
             uri = "https://"+region+".api.blizzard.com/data/wow/playable-class/index?namespace=static-"+region+"&locale=en_US&access_token=" +token;
             //Get API data from web service
-            apiData = GetDataFromAPI(region, token);
+            apiData = GetDataFromAPI<PlayableClass>(region, token);
             //Get existing database data.
             //Need to specify the type of this class
             databaseData = GetDataFromDatabase<PlayableClass>();
-        }
-
-        //Pull latest data from the API
-        private List<PlayableClass> GetDataFromAPI(string region, string token)
-        { 
-            IRestResponse apiResponse = MakeAPIRequest(uri);
-
-            //TODO: Add error handling here
-
-            /*//DEBUG
-            Console.WriteLine(apiResponse.Content);
-            //*/
-            dynamic apiResponseJson = JsonConvert.DeserializeObject(apiResponse.Content);
-            return apiResponseJson.classes.ToObject<List<PlayableClass>>();
         }
 
         //Get data that's in the API but not in the DB and write it.
