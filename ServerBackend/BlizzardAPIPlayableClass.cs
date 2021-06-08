@@ -69,12 +69,14 @@ namespace ServerBackend
             }
         }
 
+        /*
         //Compare database and API data, return data only in API (new data)
         //TODO: Move this to the base class. Need to make the type generic first. Potentially can use the class fields rather than pass as parameters.
         private List<PlayableClass> GetNewPlayableClassesFromAPI(List<PlayableClass> apiList, List<PlayableClass> dbList)
         {
             return apiList.Except(dbList).ToList();
         }
+        */
 
         //Get data that's in the API but not in the DB and write it.
         public void WriteNewAPIDataToDatabase()

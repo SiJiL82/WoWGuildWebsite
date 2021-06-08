@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using RestSharp;
 
 namespace ServerBackend
@@ -20,6 +22,10 @@ namespace ServerBackend
             return response;
         }
 
-
+        //Compare database and API data, return data only in API (new data)
+        public virtual List<T> GetNewPlayableClassesFromAPI<T>(List<T> apiList, List<T> dbList) where T : class
+        {
+            return apiList.Except(dbList).ToList();
+        }
     }
 }
