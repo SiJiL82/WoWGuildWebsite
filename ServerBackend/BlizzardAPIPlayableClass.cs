@@ -16,7 +16,8 @@ namespace ServerBackend
         public List<PlayableClass> databaseData {get; set;}
 
         //URI for the request
-        private string uri;
+        //TODO: Look at abstract properties, how can this be made private?
+        public override string uri {get; set;}
 
 
         //Constructor, pass in region and authentication token

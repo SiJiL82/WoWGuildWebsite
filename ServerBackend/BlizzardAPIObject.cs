@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using RestSharp;
 using ServerBackend.Models;
 
@@ -7,7 +8,7 @@ namespace ServerBackend
 {
     public abstract class BlizzardAPIObject
     {
-        
+        public abstract string uri {get; set;}
         //Class to make requests to the Blizzard API.
         
         //Method to get the API data from the end point
@@ -55,6 +56,18 @@ namespace ServerBackend
             return results;
         }
 
-       
+        //Pull latest data from the API
+        public virtual List<T> GetDataFromAPI<T>(string region, string token) where T : class
+        { 
+            IRestResponse apiResponse = MakeAPIRequest(uri);
+
+            //TODO: Add error handling here
+
+            /*//DEBUG
+            Console.WriteLine(apiResponse.Content);
+            //*/
+            dynamic apiResponseJson = JsonConvert.DeserializeObject(apiResponse.Content);
+            return apiResponseJson.classes.ToObject<List<T>>();
+        }
     }
 }
