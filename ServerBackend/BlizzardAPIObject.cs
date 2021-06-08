@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RestSharp;
+using ServerBackend.Models;
 
 namespace ServerBackend
 {
@@ -26,6 +27,19 @@ namespace ServerBackend
         public virtual List<T> GetNewPlayableClassesFromAPI<T>(List<T> apiList, List<T> dbList) where T : class
         {
             return apiList.Except(dbList).ToList();
+        }
+
+        //Write API data to database
+        public virtual void WriteToDatabase<T>(List<T> blizzardAPIObjects) where T : class
+        {
+            using(WoWGuildContext database = new WoWGuildContext())
+            {
+                foreach(T blizzardAPIObject in blizzardAPIObjects)
+                {
+                    database.Add(blizzardAPIObject);
+                }
+                database.SaveChanges();
+            }
         }
     }
 }
