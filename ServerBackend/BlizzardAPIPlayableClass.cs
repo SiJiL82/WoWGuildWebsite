@@ -30,12 +30,5 @@ namespace ServerBackend
             //Need to specify the type of this class
             databaseData = GetDataFromDatabase<PlayableClass>();
         }
-
-        //Get data that's in the API but not in the DB and write it.
-        public void WriteNewAPIDataToDatabase()
-        {
-            List<PlayableClass> newAPIData = GetNewPlayableClassesFromAPI(apiData, databaseData);
-            WriteToDatabase(newAPIData);
-        }
     }
 }

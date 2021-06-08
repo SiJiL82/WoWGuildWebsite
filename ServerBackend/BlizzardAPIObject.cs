@@ -28,7 +28,7 @@ namespace ServerBackend
         }
 
         //Compare database and API data, return data only in API (new data)
-        public virtual List<T> GetNewPlayableClassesFromAPI<T>(List<T> apiList, List<T> dbList) where T : class
+        public virtual List<T> GetAPIDataNotInDatabase<T>(List<T> apiList, List<T> dbList) where T : class
         {
             return apiList.Except(dbList).ToList();
         }
@@ -72,5 +72,13 @@ namespace ServerBackend
             dynamic apiResponseJson = JsonConvert.DeserializeObject(apiResponse.Content);
             return apiResponseJson.classes.ToObject<List<T>>();
         }
+
+        //Get data that's in the API but not in the DB and write it.
+        public virtual void WriteNewAPIDataToDatabase()
+        {
+            List<T> newAPIData = GetAPIDataNotInDatabase(apiData, databaseData);
+            WriteToDatabase(newAPIData);
+        }
+        
     }
 }
