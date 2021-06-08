@@ -9,8 +9,6 @@ namespace ServerBackend
 {
     public partial class WoWGuildContext : DbContext
     {
-        
-                
         public WoWGuildContext()
         {
         }
@@ -21,6 +19,7 @@ namespace ServerBackend
         }
 
         public virtual DbSet<PlayableClass> PlayableClasses { get; set; }
+        public virtual DbSet<PlayableRace> PlayableRaces { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,6 +41,19 @@ namespace ServerBackend
             modelBuilder.Entity<PlayableClass>(entity =>
             {
                 entity.ToTable("PlayableClass", "api");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<PlayableRace>(entity =>
+            {
+                entity.ToTable("PlayableRace", "api");
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()

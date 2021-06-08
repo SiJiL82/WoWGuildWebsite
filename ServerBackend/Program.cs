@@ -45,5 +45,5 @@ namespace ServerBackend
 
 
 /*
-dotnet ef dbcontext scaffold <connectionstring> Microsoft.EntityFrameworkCore.SqlServer --table api.PlayableRace --output-dir Models --namespace ServerBackend --context-namespace ServerBackend
+dotnet ef dbcontext scaffold <connectionstring> Microsoft.EntityFrameworkCore.SqlServer --table api.PlayableRace --table api.PlayableClass --output-dir Models --namespace ServerBackend --context-namespace ServerBackend --force
 */

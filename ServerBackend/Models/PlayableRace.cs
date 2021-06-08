@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ServerBackend
 {
-    public partial class PlayableClass
+    public partial class PlayableRace
     {
         public int Id { get; set; }
         public string Name { get; set; }
