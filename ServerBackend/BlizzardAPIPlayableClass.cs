@@ -57,13 +57,13 @@ namespace ServerBackend
 
         //Write API data to database
         //TODO: Move this to the base class. Need to make the type generic first.
-        private void WriteToDatabase(List<PlayableClass> classes)
+        private void WriteToDatabase(List<PlayableClass> playableClasses)
         {
             using(WoWGuildContext database = new WoWGuildContext())
             {
-                foreach(PlayableClass newClass in classes)
+                foreach(PlayableClass playableClass in playableClasses)
                 {
-                    database.Add(newClass);
+                    database.Add(playableClass);
                 }
                 database.SaveChanges();
             }
