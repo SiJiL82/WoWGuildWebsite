@@ -31,16 +31,18 @@ namespace ServerBackend
             //*/
 
             #region "PlayableClass"
-            BlizzardAPIObject<PlayableClass> apiPlayableClass = new BlizzardAPIObject<PlayableClass>();
+            BlizzardAPIObject<PlayableClass> apiPlayableClass = new BlizzardAPIObject<PlayableClass>(PlayableClass.jsonArrayName);
             apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
             apiPlayableClass.WriteNewAPIDataToDatabase();
             #endregion
 
+            /*
             #region "PlayableRaces"
             BlizzardAPIObject<PlayableRace> apiPlayableRace = new BlizzardAPIObject<PlayableRace>();
             apiPlayableRace.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-race/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
             apiPlayableRace.WriteNewAPIDataToDatabase();
             #endregion
+            */
         }
     }
 }

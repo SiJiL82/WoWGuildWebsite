@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
@@ -19,6 +20,13 @@ namespace ServerBackend
         private List<T> databaseData {get; set;}
         //API request URI
         public string uri {get; set;}
+        //Identifier for the JSON array that we want to save to the database
+        private string jsonArrayName{get; set;}
+
+        public BlizzardAPIObject(string jsonArrayName)
+        {
+            this.jsonArrayName = jsonArrayName;
+        }
 
 
         //Get the API data from the end point
@@ -48,7 +56,20 @@ namespace ServerBackend
             List<JToken> tokens = JObject.Parse(apiResponse.Content).Children().ToList();
             //Get the array data from the 2nd token.
             //TODO: So far every API call I've looked at has been in this format, but potentially there are some that are different. Potentially we'll need to create a class for the JSON object and use that to get the exact data out. https://app.quicktype.io/ will be useful for that.
-            JToken jsonArrayData = JObject.Parse(apiResponse.Content).GetValue(tokens[1].Path);
+            int tokensArrayPos = -1;
+            for(int i = 0; i < tokens.Count; i++)
+            {
+                if(tokens[i].Path == jsonArrayName)
+                {
+                    tokensArrayPos = i;
+                }
+            }
+            if(tokensArrayPos == -1)
+            {
+                throw new ArgumentException("Array identifier not found in class", nameof(T));
+            }
+
+            JToken jsonArrayData = JObject.Parse(apiResponse.Content).GetValue(tokens[tokensArrayPos].Path);
            
             return jsonArrayData.ToObject<List<T>>();
         }
