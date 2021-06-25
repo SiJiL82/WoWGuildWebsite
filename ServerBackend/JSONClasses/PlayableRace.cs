@@ -50,12 +50,12 @@ namespace ServerBackend.JSONClasses
 
     public partial class PlayableRace
     {
-        public static PlayableRace FromJson(string json) => JsonConvert.DeserializeObject<PlayableRace>(json, QuickType.Converter.Settings);
+        public static PlayableRace FromJson(string json) => JsonConvert.DeserializeObject<PlayableRace>(json, ServerBackend.JSONClasses.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this PlayableRace self) => JsonConvert.SerializeObject(self, QuickType.Converter.Settings);
+        public static string ToJson(this PlayableRace self) => JsonConvert.SerializeObject(self, ServerBackend.JSONClasses.Converter.Settings);
     }
 
     internal static class Converter
