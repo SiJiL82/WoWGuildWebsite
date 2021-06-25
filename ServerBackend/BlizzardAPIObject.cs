@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace ServerBackend
@@ -42,8 +43,14 @@ namespace ServerBackend
             /*//DEBUG
             Console.WriteLine(apiResponse.Content);
             //*/
-            dynamic apiResponseJson = JsonConvert.DeserializeObject(apiResponse.Content);
-            return apiResponseJson.classes.ToObject<List<T>>();
+
+            //Get the child tokens out from the JSON object
+            List<JToken> tokens = JObject.Parse(apiResponse.Content).Children().ToList();
+            //Get the array data from the 2nd token.
+            //TODO: So far every API call I've looked at has been in this format, but potentially there are some that are different. Potentially we'll need to create a class for the JSON object and use that to get the exact data out. https://app.quicktype.io/ will be useful for that.
+            JToken jsonArrayData = JObject.Parse(apiResponse.Content).GetValue(tokens[1].Path);
+           
+            return jsonArrayData.ToObject<List<T>>();
         }
 
         //Pull latest data from the database
@@ -76,14 +83,14 @@ namespace ServerBackend
         }
 
         //Write API data to database
-        private void WriteToDatabase(List<T> blizzardAPIObjects)
+        private void WriteToDatabase(List<T> blizzardAPIObject)
         {
             using(WoWGuildContext database = new WoWGuildContext())
             {
                 //Loop through each object in the list and write it to the database.
-                foreach(T blizzardAPIObject in blizzardAPIObjects)
+                foreach(T item in blizzardAPIObject)
                 {
-                    database.Add(blizzardAPIObject);
+                    database.Add(item);
                 }
                 //Commit data
                 database.SaveChanges();
