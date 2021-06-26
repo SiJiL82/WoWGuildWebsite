@@ -18,6 +18,7 @@ namespace ServerBackend
         {
         }
 
+        public virtual DbSet<Class> PlayableClasses {get; set;}
         /*
         public virtual DbSet<PlayableClass> PlayableClasses { get; set; }
         public virtual DbSet<PlayableRace> PlayableRaces { get; set; }

@@ -31,32 +31,10 @@ namespace ServerBackend
             Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
 
-            /*
-            #region "PlayableClass"
-            BlizzardAPIObject<PlayableClass> apiPlayableClass = new BlizzardAPIObject<PlayableClass>(PlayableClass.jsonArrayName);
-            apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
-            apiPlayableClass.WriteNewAPIDataToDatabase();
-            #endregion
-            
-
-            
-            #region "PlayableRaces"
-            BlizzardAPIObject<PlayableRace> apiPlayableRace = new BlizzardAPIObject<PlayableRace>(PlayableRace.jsonArrayName);
-            apiPlayableRace.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-race/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
-            apiPlayableRace.WriteNewAPIDataToDatabase();
-            #endregion
-            
-            #region "Realms"
-            BlizzardAPIObject<Realm> apiRealm = new BlizzardAPIObject<Realm>(Realm.jsonArrayName);
-            apiRealm.uri = "https://" + region + ".api.blizzard.com/data/wow/realm/index?namespace=dynamic-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
-            apiRealm.WriteNewAPIDataToDatabase();
-            #endregion
-            */
+            APIRequest apiRequest = new APIRequest();
+            string jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
+            var playableClass = PlayableClass.FromJson(jsonString); 
+            playableClass.WriteToDatabase();
         }
     }
 }
-
-
-/*
-dotnet ef dbcontext scaffold <connectionstring> Microsoft.EntityFrameworkCore.SqlServer --table api.PlayableRace --table api.PlayableClass --output-dir Models --namespace ServerBackend --context-namespace ServerBackend --force
-*/

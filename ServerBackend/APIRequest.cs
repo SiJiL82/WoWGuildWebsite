@@ -1,5 +1,4 @@
 using RestSharp;
-using Newtonsoft.Json;
 
 namespace ServerBackend
 {
