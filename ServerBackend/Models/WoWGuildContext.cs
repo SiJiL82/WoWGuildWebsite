@@ -40,6 +40,9 @@ namespace ServerBackend
             modelBuilder.HasDefaultSchema("api");
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
             
+            
+            //Specify tables that shouldn't have the ID column be Identity because we want the value from the API
+            #region "Identity Specifications"
             modelBuilder.Entity<PlayableClass>(entity =>
             {
                 entity.ToTable("PlayableClass", "api");
@@ -47,12 +50,8 @@ namespace ServerBackend
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
-
+            
             modelBuilder.Entity<PlayableRace>(entity =>
             {
                 entity.ToTable("PlayableRace", "api");
@@ -60,12 +59,18 @@ namespace ServerBackend
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
-            
+
+            modelBuilder.Entity<Realm>(entity =>
+            {
+                entity.ToTable("Realm", "api");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
+            });
+            #endregion
+
             OnModelCreatingPartial(modelBuilder);
         }
 
