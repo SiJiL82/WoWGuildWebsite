@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -18,17 +19,51 @@ namespace ServerBackend
         [JsonProperty("races")]
         public List<Race> Races { get; set; }
 
-        public void WriteToDatabase()
+        //Write API data to database
+        private void WriteToDatabase(List<Race> blizzardAPIObject)
         {
-            using(WoWGuildContext database = new WoWGuildContext())         
+            using(WoWGuildContext database = new WoWGuildContext())
+            {
+                //Loop through each object in the list and write it to the database.
+                foreach(Race item in blizzardAPIObject)
                 {
-                    foreach(var item in Races)
-                    {
-                        database.Add(item);
-                    }
-                    
-                    database.SaveChanges();
+                    database.Add(item);
                 }
+                //Commit data
+                database.SaveChanges();
+            }
+        }
+
+        //Pull latest data from the database
+        private List<Race> GetDataFromDatabase()
+        {
+            List<Race> results = null;
+
+            using(WoWGuildContext database = new WoWGuildContext())
+            {
+                results = database.Set<Race>().ToList();
+            }
+
+            return results;
+        }
+
+        //Compare database and API data, return data only in API (new data)
+        public void WriteNewAPIDataToDatabase()
+        {
+            List<Race> databaseData = GetDataFromDatabase();
+            //Compare existing database data against API data
+            List<Race> newAPIData = GetAPIDataNotInDatabase(databaseData);
+            //Write any new API data to the database
+            if(newAPIData.Count > 0)
+            {
+                WriteToDatabase(newAPIData);
+            }
+        }
+
+        //Return a list of rows that are in API data but not in the database
+        private List<Race> GetAPIDataNotInDatabase(List<Race> databaseData)
+        {
+            return Races.Except(databaseData).ToList();
         }
     }
 

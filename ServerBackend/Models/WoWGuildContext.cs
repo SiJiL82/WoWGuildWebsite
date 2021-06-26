@@ -19,12 +19,7 @@ namespace ServerBackend
         }
 
         public virtual DbSet<Class> PlayableClasses {get; set;}
-        /*
-        public virtual DbSet<PlayableClass> PlayableClasses { get; set; }
-        public virtual DbSet<PlayableRace> PlayableRaces { get; set; }
-        public virtual DbSet<Realm> Realms { get; set; }
-        public virtual DbSet<Character> Characters {get; set;}
-        */
+        public virtual DbSet<Race> PlayableRaces {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

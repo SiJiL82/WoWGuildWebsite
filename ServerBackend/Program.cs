@@ -31,10 +31,18 @@ namespace ServerBackend
             Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
 
+            string apiRequestType = "playable-class";
+            string apiRequestNamespace = "static";
+
             APIRequest apiRequest = new APIRequest();
-            string jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
+            string jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
             var playableClass = PlayableClass.FromJson(jsonString); 
-            playableClass.WriteToDatabase();
+            playableClass.WriteNewAPIDataToDatabase();
+
+            apiRequestType = "playable-race";
+            jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
+            var playableRace = PlayableRace.FromJson(jsonString);
+            playableRace.WriteNewAPIDataToDatabase();
         }
     }
 }
