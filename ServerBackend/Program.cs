@@ -42,7 +42,7 @@ namespace ServerBackend
             apiRequestType = "playable-race";
             jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
             var playableRace = PlayableRace.FromJson(jsonString);
-            playableRace.WriteNewAPIDataToDatabase();
+            playableRace.WriteNewAPIDataToDatabase(playableRace.Races);
         }
     }
 }
