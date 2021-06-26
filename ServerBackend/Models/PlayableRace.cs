@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Globalization;
-using System.Linq;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace ServerBackend
 {
