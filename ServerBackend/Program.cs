@@ -31,7 +31,7 @@ namespace ServerBackend
             Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
 
-            
+            /*
             #region "PlayableClass"
             BlizzardAPIObject<PlayableClass> apiPlayableClass = new BlizzardAPIObject<PlayableClass>(PlayableClass.jsonArrayName);
             apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
@@ -51,6 +51,7 @@ namespace ServerBackend
             apiRealm.uri = "https://" + region + ".api.blizzard.com/data/wow/realm/index?namespace=dynamic-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
             apiRealm.WriteNewAPIDataToDatabase();
             #endregion
+            */
         }
     }
 }

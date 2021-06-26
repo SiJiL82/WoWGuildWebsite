@@ -4,7 +4,7 @@
 
 namespace ServerBackend
 {
-    public partial class PlayableClass
+    public partial class Class
     {
         //Identifier for the JSON array we need to save. Static so we can pass it to the API request without needing to instantiate the class.
         public static string jsonArrayName = "classes";
@@ -16,9 +16,9 @@ namespace ServerBackend
         
         public override bool Equals(object obj)
         {
-            if (!(obj is PlayableClass))
-                throw new ArgumentException("obj is not an PlayableClass");
-            var usr = obj as PlayableClass;
+            if (!(obj is Class))
+                throw new ArgumentException("obj is not an Class");
+            var usr = obj as Class;
             if (usr == null)
                 return false;
             return this.Id.Equals(usr.Id) && this.Name.Equals(usr.Name);
