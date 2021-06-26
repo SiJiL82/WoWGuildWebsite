@@ -7,6 +7,8 @@ namespace ServerBackend
 {
     public partial class PlayableRace
     {
+        public static string jsonArrayName = "races";
+
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
