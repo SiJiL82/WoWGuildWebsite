@@ -37,7 +37,7 @@ namespace ServerBackend
             APIRequest apiRequest = new APIRequest();
             string jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
             var playableClass = PlayableClass.FromJson(jsonString); 
-            playableClass.WriteNewAPIDataToDatabase();
+            playableClass.WriteNewAPIDataToDatabase(playableClass.Classes);
 
             apiRequestType = "playable-race";
             jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
