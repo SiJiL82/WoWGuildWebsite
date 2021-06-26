@@ -4,7 +4,7 @@
 
 namespace ServerBackend
 {
-    public partial class Class
+    public partial class apiClass
     {        
         public override int GetHashCode()
         {
@@ -13,9 +13,9 @@ namespace ServerBackend
         
         public override bool Equals(object obj)
         {
-            if (!(obj is Class))
-                throw new ArgumentException("obj is not an Class");
-            var usr = obj as Class;
+            if (!(obj is apiClass))
+                throw new ArgumentException("obj is not an apiClass");
+            var usr = obj as apiClass;
             if (usr == null)
                 return false;
             return this.Id.Equals(usr.Id) && this.Name.Equals(usr.Name);

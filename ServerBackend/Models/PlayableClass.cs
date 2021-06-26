@@ -11,16 +11,16 @@ using Newtonsoft.Json.Converters;
 namespace ServerBackend
 {
     [NotMapped]
-    public partial class PlayableClass : APIObject<Class>
+    public partial class PlayableClass : APIObject<apiClass>
     {
         [JsonProperty("_links")]
         public Links Links { get; set; }
 
         [JsonProperty("classes")]
-        public List<Class> Classes { get; set; }        
+        public List<apiClass> Classes { get; set; }        
     }
 
-    public partial class Class
+    public partial class apiClass
     {
         [JsonProperty("key")]
         public Self Key { get; set; }
