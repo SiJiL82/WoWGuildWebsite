@@ -7,7 +7,7 @@ using RestSharp;
 
 namespace ServerBackend
 {
-    public class BlizzardAPIObject<T> where T : class
+    public class zzBlizzardAPIObject<T> where T : class
     {
         /*
         Class to pull data from the Blizzard API, and from our database.
@@ -23,7 +23,7 @@ namespace ServerBackend
         //Identifier for the JSON array that we want to save to the database
         private string jsonArrayName{get; set;}
 
-        public BlizzardAPIObject(string jsonArrayName)
+        public zzBlizzardAPIObject(string jsonArrayName)
         {
             this.jsonArrayName = jsonArrayName;
         }
