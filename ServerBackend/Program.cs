@@ -34,7 +34,7 @@ namespace ServerBackend
             
             #region "PlayableClass"
             BlizzardAPIObject<PlayableClass> apiPlayableClass = new BlizzardAPIObject<PlayableClass>(PlayableClass.jsonArrayName);
-            apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
+            apiPlayableClass.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-class/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
             apiPlayableClass.WriteNewAPIDataToDatabase();
             #endregion
             
@@ -42,10 +42,15 @@ namespace ServerBackend
             
             #region "PlayableRaces"
             BlizzardAPIObject<PlayableRace> apiPlayableRace = new BlizzardAPIObject<PlayableRace>(PlayableRace.jsonArrayName);
-            apiPlayableRace.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-race/index?namespace=static-" + region + "&locale=en_US&access_token=" + blizzardAPIAuthentication.accessToken;
+            apiPlayableRace.uri = "https://" + region + ".api.blizzard.com/data/wow/playable-race/index?namespace=static-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
             apiPlayableRace.WriteNewAPIDataToDatabase();
             #endregion
             
+            #region "Realms"
+            BlizzardAPIObject<Realm> apiRealm = new BlizzardAPIObject<Realm>(Realm.jsonArrayName);
+            apiRealm.uri = "https://" + region + ".api.blizzard.com/data/wow/realm/index?namespace=dynamic-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken;
+            apiRealm.WriteNewAPIDataToDatabase();
+            #endregion
         }
     }
 }

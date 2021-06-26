@@ -16,9 +16,9 @@ namespace ServerBackend
         
         public override bool Equals(object obj)
         {
-            if (!(obj is PlayableClass))
-                throw new ArgumentException("obj is not an PlayableClass");
-            var usr = obj as PlayableClass;
+            if (!(obj is PlayableRace))
+                throw new ArgumentException("obj is not an PlayableRace");
+            var usr = obj as PlayableRace;
             if (usr == null)
                 return false;
             return this.Id.Equals(usr.Id) && this.Name.Equals(usr.Name);

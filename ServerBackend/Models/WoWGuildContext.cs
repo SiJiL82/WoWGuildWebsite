@@ -20,6 +20,7 @@ namespace ServerBackend
 
         public virtual DbSet<PlayableClass> PlayableClasses { get; set; }
         public virtual DbSet<PlayableRace> PlayableRaces { get; set; }
+        public virtual DbSet<Realm> Realms { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,8 +37,9 @@ namespace ServerBackend
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("api");
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-
+            
             modelBuilder.Entity<PlayableClass>(entity =>
             {
                 entity.ToTable("PlayableClass", "api");
@@ -63,7 +65,7 @@ namespace ServerBackend
                     .IsRequired()
                     .HasMaxLength(50);
             });
-
+            
             OnModelCreatingPartial(modelBuilder);
         }
 
