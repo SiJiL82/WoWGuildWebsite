@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +12,7 @@ namespace ServerBackend
     [NotMapped]
     public partial class PlayableClass : APIRequest
     {
-        [JsonProperty("_links"), NotMapped]
-        //[NotMapped]
+        [JsonProperty("_links")]
         public Links Links { get; set; }
 
         [JsonProperty("classes")]
@@ -46,31 +44,13 @@ namespace ServerBackend
         public long Id { get; set; }
     }
 
-    [NotMapped]
-    public partial class Self
-    {
-        [JsonProperty("href")]
-        public Uri Href { get; set; }
-    }
-
-    [NotMapped]
-    public partial class Links
-    {
-        [JsonProperty("self")]
-        public Self Self { get; set; }
-    }
-
     public partial class PlayableClass
     {
         public static PlayableClass FromJson(string json) => JsonConvert.DeserializeObject<PlayableClass>(json, ServerBackend.Converter.Settings);
     }
 
-    public static class Serialize
+    public static class PlayableClassSerialize
     {
         public static string ToJson(this PlayableClass self) => JsonConvert.SerializeObject(self, ServerBackend.Converter.Settings);
     }
-
-    
-
-    
 }

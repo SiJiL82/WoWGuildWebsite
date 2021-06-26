@@ -5,10 +5,7 @@
 namespace ServerBackend
 {
     public partial class Class
-    {
-        //Identifier for the JSON array we need to save. Static so we can pass it to the API request without needing to instantiate the class.
-        public static string jsonArrayName = "classes";
-        
+    {        
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
