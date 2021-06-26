@@ -31,18 +31,36 @@ namespace ServerBackend
             Console.WriteLine(configuration["ConnectionStrings:WoWGuildWebsite"]);
             //*/
 
-            string apiRequestType = "playable-class";
-            string apiRequestNamespace = "static";
-
+            //Config items for creating database objects
+            string apiRequestType;
+            string apiRequestNamespace;
             APIRequest apiRequest = new APIRequest();
-            string jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
+            string jsonString;
+
+            //TODO: Refactor these out into methods. See if we can find a way to make a generic method call we can run for each one. Unlikely though as we need to call a static class method unique to each one
+            #region "PlayableClass"
+            apiRequestType = "playable-class";
+            apiRequestNamespace = "static";
+            jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
             var playableClass = PlayableClass.FromJson(jsonString); 
             playableClass.WriteNewAPIDataToDatabase(playableClass.Classes);
+            #endregion
 
+            #region "PlayableRace"
             apiRequestType = "playable-race";
+            apiRequestNamespace = "static";
             jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
             var playableRace = PlayableRace.FromJson(jsonString);
             playableRace.WriteNewAPIDataToDatabase(playableRace.Races);
+            #endregion
+
+            #region "Realm"
+            apiRequestType = "realm";
+            apiRequestNamespace = "dynamic";
+            jsonString = apiRequest.MakeAPIRequest("https://" + region + ".api.blizzard.com/data/wow/" + apiRequestType + "/index?namespace=" + apiRequestNamespace + "-" + region + "&locale=en_GB&access_token=" + blizzardAPIAuthentication.accessToken);
+            var realm = Realm.FromJson(jsonString);
+            realm.WriteNewAPIDataToDatabase(realm.Realms);
+            #endregion
         }
     }
 }

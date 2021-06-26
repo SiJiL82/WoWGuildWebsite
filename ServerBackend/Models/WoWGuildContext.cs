@@ -20,6 +20,7 @@ namespace ServerBackend
 
         public virtual DbSet<apiClass> PlayableClasses {get; set;}
         public virtual DbSet<Race> PlayableRaces {get; set;}
+        public virtual DbSet<RealmElement> Realms {get; set;}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -4,11 +4,8 @@ using System;
 
 namespace ServerBackend
 {
-    public partial class Realm
+    public partial class RealmElement
     {
-        //Identifier for the JSON array we need to save. Static so we can pass it to the API request without needing to instantiate the class.
-        public static string jsonArrayName = "realms";
-        
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
@@ -16,9 +13,9 @@ namespace ServerBackend
         
         public override bool Equals(object obj)
         {
-            if (!(obj is Realm))
-                throw new ArgumentException("obj is not a Realm");
-            var usr = obj as Realm;
+            if (!(obj is RealmElement))
+                throw new ArgumentException("obj is not a RealmElement");
+            var usr = obj as RealmElement;
             if (usr == null)
                 return false;
             return this.Id.Equals(usr.Id) && this.Name.Equals(usr.Name);
